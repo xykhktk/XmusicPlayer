@@ -58,7 +58,7 @@ public class SimpleMusicPlayer extends Activity implements  OnGestureListener{
 	Runnable lrcRunnable = new Runnable(){
 		@Override
 		public void run() {
-			lrctextview.setIndex(MusicServer.lrcIndex);
+			lrctextview.setIndex(MusicService.lrcIndex);
 			lrctextview.invalidate();
 			lrcHandler.postDelayed(lrcRunnable, 100);
 		}
@@ -115,7 +115,7 @@ public class SimpleMusicPlayer extends Activity implements  OnGestureListener{
 	
 	private void setLrcView(){
 		mlrc = new Lrc();
-		mlrc.readLRC(MusicServer.musiclist.get(MusicServer.service_id).getUrl());	//解析歌词
+		mlrc.readLRC(MusicService.musiclist.get(MusicService.service_id).getUrl());	//解析歌词
 		LrcContentList = mlrc.getLrcList();	//读取解析后的歌词
 		lrctextview.setLrcList(LrcContentList);	// LrcContentList 导入lrctextview
 		lrctextview.setAnimation(AnimationUtils.loadAnimation(SimpleMusicPlayer.this, R.anim.alpha_z));
@@ -155,7 +155,7 @@ public class SimpleMusicPlayer extends Activity implements  OnGestureListener{
 		public void onClick(View v) {
 			
 			if (v == btn_pre){
-				songId = MusicServer.service_id;
+				songId = MusicService.service_id;
 				songId--;
 				if (songId < 0) songId = 0;
 				
@@ -192,7 +192,7 @@ public class SimpleMusicPlayer extends Activity implements  OnGestureListener{
 				}
 			}
 			else if(v == btn_next ){
-				songId = MusicServer.service_id;
+				songId = MusicService.service_id;
 				songId = songId + 1;
 				if (songId > (musiclist.size()-1)) songId = musiclist.size()-1;
 				
